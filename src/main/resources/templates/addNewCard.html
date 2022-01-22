@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IdCardAdd</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<form action="#" th:action="@{/saveCard}" th:object="${oneCard}" method="post">
+    <label>First name:</label><br>
+    <input type="text" th:field="*{name}"><br>
+    <label>Last name:</label><br>
+    <input type="text" th:field="*{surname}"><br>
+    <label>Phone number:</label><br>
+    <input type="text" th:field="*{phone}"><br>
+    <label>Email:</label><br>
+    <input type="text" th:field="*{email}"><br>
+    <label>Birthday:</label><br>
+    <input type="text" th:field="*{birthday}"><br>
+    <button type="submit">Add Card</button>
+</form>
+
+</body>
+</html>
