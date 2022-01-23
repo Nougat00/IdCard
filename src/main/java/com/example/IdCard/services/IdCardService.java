@@ -20,4 +20,6 @@ public class IdCardService {
     public void saveCard(OneCard oneCard){
         this.idCardRepository.save(oneCard);
     }
+
+    public void deleteCard(Long id){this.idCardRepository.deleteById(id);}
 }
