@@ -25,21 +25,24 @@
             <th>Phone number</th>
             <th>Email</th>
             <th>Birthday</th>
-            <th>Actioin</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="oneCard: ${listOneCard}">
             <td th:text ="${oneCard.name}"></td>
-            <td><h1 class="display-1">KUTAS</h1></td>
-            <td><h1 class="display-1">PENIS</h1></td>
             <td th:text ="${oneCard.surname}"></td>
             <td th:text ="${oneCard.phone}"></td>
-            <td><h1 class="display-1">SIUSIAK</h1></td>
             <td th:text ="${oneCard.email}"></td>
             <td th:text ="${oneCard.birthday}"></td>
             <td>
                 <a th:href="@{/deleteCard/(id=${oneCard.id})}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{/showFormUpdate/{id}(id=${oneCard.id})}" class="btn btn-primary">Update</a>
+            </td>
+            <td>
+                <a th:href="@{/showFormSending/{id}(id=${oneCard.id})}" class="btn btn-primary">Send as Email</a>
             </td>
         </tr>
         </tbody>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IdCard</title>
+    <link rel="icon" href="http://www.histurion.pl/grafika/slownik/xx_wiek/normal/jan_pawel_ii.jpg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+</head>
+<body>
+<h3>You will send an email with this idCard</h3>
+<form action="#" th:action="@{/emailSend}"  method="post">
+    <label>Type your email:</label><br>
+    <input type="hidden" th:field="*{idCard.name}">
+    <input type="hidden" th:field="*{idCard.surname}">
+    <input type="hidden" th:field="*{idCard.phone}">
+    <input type="hidden" th:field="*{idCard.email}">
+    <input type="hidden" th:field="*{idCard.birthday}">
+    <input type="email" th:field="*{email.to}" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$"><br>
+    <button type="submit" class="btn btn-primary btn-lg">Send as an email</button>
+</form>
+</body>
+</html>

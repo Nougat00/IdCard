@@ -1,26 +1,25 @@
 package com.example.IdCard.controllers;
 
+import com.example.IdCard.messeges.MessageSender;
+import com.example.IdCard.model.EmailValues;
 import com.example.IdCard.model.OneCard;
-import com.example.IdCard.services.IdCardService;
-import lombok.AllArgsConstructor;
+import com.example.IdCard.services.IdCardServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class IdCardController {
 
     @Autowired
-    private IdCardService idCardService;
+    private IdCardServiceImpl idCardServiceImpl;
+
+    MessageSender messageSender = new MessageSender();
 
     @GetMapping("/")
     public String getCardList(Model model){
-        model.addAttribute("listOneCard", idCardService.getCards());
+        model.addAttribute("listOneCard", idCardServiceImpl.getCards());
         return "index";
     }
 
@@ -33,14 +32,36 @@ public class IdCardController {
 
     @PostMapping("/saveCard")
     public String saveCard(@ModelAttribute("saveCard") OneCard oneCard){
-        idCardService.saveCard(oneCard);
+        idCardServiceImpl.saveCard(oneCard);
         return "redirect:/";
     }
 
 
     @GetMapping("/deleteCard")
     public String deleteCard(@RequestParam long id){
-        idCardService.deleteCard(id);
+        idCardServiceImpl.deleteCard(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/showFormUpdate/{id}")
+    public String showFormUpdate(@PathVariable (value="id") long id, Model model){
+        OneCard oneCard = idCardServiceImpl.getOneCardById(id);
+        model.addAttribute("idCard" , oneCard);
+        return "update";
+    }
+
+    @GetMapping("/showFormSending/{id}")
+    public String showEmailForm(@PathVariable (value="id") long id, Model model){
+        OneCard oneCard = idCardServiceImpl.getOneCardById(id);
+        model.addAttribute("idCard" , oneCard);
+        EmailValues emailValues = new EmailValues();
+        model.addAttribute("email", emailValues);
+        return "emailSender";
+    }
+
+    @PostMapping("/emailSend")
+    public String emailSend(@ModelAttribute("emailValues") EmailValues emailValues){
+        messageSender.send(emailValues);
         return "redirect:/";
     }
 
