@@ -1,5 +1,6 @@
 package com.example.IdCard.controllers;
 
+import com.example.IdCard.Exporters.CSV;
 import com.example.IdCard.messeges.MessageSender;
 import com.example.IdCard.model.EmailValues;
 import com.example.IdCard.model.OneCard;
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 public class IdCardController {
@@ -62,6 +66,13 @@ public class IdCardController {
     @PostMapping("/emailSend")
     public String emailSend(@ModelAttribute("emailValues") EmailValues emailValues){
         messageSender.send(emailValues);
+        return "redirect:/";
+    }
+
+    @GetMapping("/csv")
+    public String csvGenerator(HttpServletResponse response) throws IOException {
+        CSV csv = new CSV();
+        csv.getFile(response,idCardServiceImpl.getCards());
         return "redirect:/";
     }
 
