@@ -9,10 +9,10 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 public class EmailValues {
-    String name;
-    String surname;
-    String phone;
-    String email;
-    String birthday;
-    String to;
+    private String name;
+    private String surname;
+    private String phone;
+    private String email;
+    private String birthday;
+    private String to;
 }

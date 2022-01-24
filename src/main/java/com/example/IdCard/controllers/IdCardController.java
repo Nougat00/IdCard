@@ -22,49 +22,49 @@ public class IdCardController {
     MessageSender messageSender = new MessageSender();
 
     @GetMapping("/")
-    public String getCardList(Model model){
+    public String getCardList(Model model) {
         model.addAttribute("listOneCard", idCardServiceImpl.getCards());
         return "index";
     }
 
     @GetMapping("/add")
-    public String showIdCardForm(Model model){
+    public String showIdCardForm(Model model) {
         OneCard oneCard = new OneCard();
         model.addAttribute("oneCard", oneCard);
         return "addNewCard";
     }
 
     @PostMapping("/saveCard")
-    public String saveCard(@ModelAttribute("saveCard") OneCard oneCard){
+    public String saveCard(@ModelAttribute("saveCard") OneCard oneCard) {
         idCardServiceImpl.saveCard(oneCard);
         return "redirect:/";
     }
 
 
     @GetMapping("/deleteCard")
-    public String deleteCard(@RequestParam long id){
+    public String deleteCard(@RequestParam long id) {
         idCardServiceImpl.deleteCard(id);
         return "redirect:/";
     }
 
     @GetMapping("/showFormUpdate/{id}")
-    public String showFormUpdate(@PathVariable (value="id") long id, Model model){
+    public String showFormUpdate(@PathVariable(value = "id") long id, Model model) {
         OneCard oneCard = idCardServiceImpl.getOneCardById(id);
-        model.addAttribute("idCard" , oneCard);
+        model.addAttribute("idCard", oneCard);
         return "update";
     }
 
     @GetMapping("/showFormSending/{id}")
-    public String showEmailForm(@PathVariable (value="id") long id, Model model){
+    public String showEmailForm(@PathVariable(value = "id") long id, Model model) {
         OneCard oneCard = idCardServiceImpl.getOneCardById(id);
-        model.addAttribute("idCard" , oneCard);
+        model.addAttribute("idCard", oneCard);
         EmailValues emailValues = new EmailValues();
         model.addAttribute("email", emailValues);
         return "emailSender";
     }
 
     @PostMapping("/emailSend")
-    public String emailSend(@ModelAttribute("emailValues") EmailValues emailValues){
+    public String emailSend(@ModelAttribute("emailValues") EmailValues emailValues) {
         messageSender.send(emailValues);
         return "redirect:/";
     }
@@ -72,7 +72,7 @@ public class IdCardController {
     @GetMapping("/csv")
     public String csvGenerator(HttpServletResponse response) throws IOException {
         CSV csv = new CSV();
-        csv.getFile(response,idCardServiceImpl.getCards());
+        csv.getFile(response, idCardServiceImpl.getCards());
         return "redirect:/";
     }
 

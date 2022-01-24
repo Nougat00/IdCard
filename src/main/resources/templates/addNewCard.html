@@ -12,15 +12,15 @@
 <body>
 <form action="#" th:action="@{/saveCard}" th:object="${oneCard}" method="post">
     <label>First name:</label><br>
-    <input type="text" th:field="*{name}" pattern="[a-zA-Z]{2,64}"><br>
+    <input type="text" th:field="*{name}" pattern="[a-zA-Z]{2,64}" required><br>
     <label>Last name:</label><br>
-    <input type="text" th:field="*{surname}" pattern="[a-zA-Z]{2,64}"><br>
+    <input type="text" th:field="*{surname}" pattern="[a-zA-Z]{2,64}" required><br>
     <label>Phone number:</label><br>
-    <input type="text" th:field="*{phone}" pattern="[0-9]{9}"><br>
+    <input type="text" th:field="*{phone}" pattern="[0-9]{9}" required><br>
     <label>Email:</label><br>
-    <input type="email" th:field="*{email}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
+    <input type="email" th:field="*{email}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br>
     <label>Birthday:</label><br>
-    <input type="date" th:field="*{birthday}"><br>
+    <input type="date" th:field="*{birthday}" required><br>
     <button type="submit" class="btn btn-primary btn-lg">Add new IdCard</button>
 </form>
 <a th:href="@{/}">

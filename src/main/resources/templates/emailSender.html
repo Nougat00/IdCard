@@ -11,14 +11,14 @@
 </head>
 <body>
 <h3>You will send an email with this idCard</h3>
-<form action="#" th:action="@{/emailSend}"  method="post">
+<form action="#" th:action="@{/emailSend}" method="post">
     <label>Type your email:</label><br>
     <input type="hidden" th:field="*{idCard.name}">
     <input type="hidden" th:field="*{idCard.surname}">
     <input type="hidden" th:field="*{idCard.phone}">
     <input type="hidden" th:field="*{idCard.email}">
     <input type="hidden" th:field="*{idCard.birthday}">
-    <input type="email" th:field="*{email.to}" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$"><br>
+    <input type="email" th:field="*{email.to}" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$" required><br>
     <button type="submit" class="btn btn-primary btn-lg">Send as an email</button>
 </form>
 </body>
