@@ -33,13 +33,14 @@
         </thead>
         <tbody>
         <tr th:each="oneCard: ${listOneCard}">
-            <td th:text ="${oneCard.name}"></td>
-            <td th:text ="${oneCard.surname}"></td>
-            <td th:text ="${oneCard.phone}"></td>
-            <td th:text ="${oneCard.email}"></td>
-            <td th:text ="${oneCard.birthday}"></td>
+            <td th:text="${oneCard.name}"></td>
+            <td th:text="${oneCard.surname}"></td>
+            <td th:text="${oneCard.phone}"></td>
+            <td th:text="${oneCard.email}"></td>
+            <td th:text="${oneCard.birthday}"></td>
             <td>
-                <a th:href="@{/deleteCard/(id=${oneCard.id})}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+                <a th:href="@{/deleteCard/(id=${oneCard.id})}" onclick="return confirm('Are you sure?')"
+                   class="btn btn-danger">Delete</a>
             </td>
             <td>
                 <a th:href="@{/showFormUpdate/{id}(id=${oneCard.id})}" class="btn btn-primary">Update</a>
